@@ -6,7 +6,7 @@
 + Users
     name | email | password
 + Games
-    name    |   category   | desc | qty   | noOfPlayers
+    name    |   category   | desc | qty | price   | noOfPlayers
 + Cart
     items | total price | userId
 
