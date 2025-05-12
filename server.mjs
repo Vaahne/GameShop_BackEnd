@@ -4,6 +4,7 @@ import globalError from './middleware/ErrorHandlingMiddleware.mjs';
 import cors from 'cors';
 import morgan from 'morgan';
 import connectDB from './db/conn.mjs';
+import userRouter from './routes/userRoutes.mjs';
 
 // setup
 connectDB();
@@ -21,6 +22,7 @@ app.use(express.json());
 app.get('/',(req,res)=>{
     res.json({message: `Hello `});
 });
+app.use('/api/users',userRouter);
 
 // error handling middleware
 app.use(globalError);
