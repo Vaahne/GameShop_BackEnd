@@ -66,4 +66,19 @@ async function createUser(req,res){
         res.status(200).json({userId: user._id,cart: cart});
     }
 
-export default {createUser,getUsers,updateUser,deleteUser,login};
+async function userAuthenticationControllerFunction(req,res){
+         try{
+        const token = req.user;
+        if(!token)
+            return res.status(404).json({message: `Token not found`});
+        // const user = await User.findOne({_id: token});
+        // select ('-password') will remove the password
+        const user = await User.findById(token).select('-password');
+        
+        res.status(200).json(user);
+    }catch(err){
+        console.error(err.message);
+    }
+}
+
+export default {createUser,getUsers,updateUser,deleteUser,login,userAuthenticationControllerFunction};
